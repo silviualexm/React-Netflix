@@ -1,0 +1,40 @@
+body {
+	background-color: #282c34 !important;
+	font-family: "Inter", sans-serif;
+}
+
+h5 {
+	font-size: 19px;
+}
+
+.row {
+	padding: 0 15px;
+}
+
+li {
+	font-size: 12px;
+	color: #616060;
+}
+
+/* social icons */
+.list-inline-item {
+	font-size: 25px;
+}
+
+.social-icons {
+	margin-top: 15%;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.netflix {
+	margin-top: 10px;
+	font-size: 9px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-info li {
+	padding-bottom: 15px;
+}
