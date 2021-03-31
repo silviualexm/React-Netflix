@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Col, Row, Spinner, Alert, Card } from "react-bootstrap";
+import { Link, withRouter } from 'react-router-dom'
 
 class Home extends React.Component {
   state = {
@@ -14,20 +15,20 @@ class Home extends React.Component {
       movies: [],
     };
     // this is really the first method invoked upon component construction
-    console.log("THIS IS THE CONSTRUCTOR");
+    //console.log("THIS IS THE CONSTRUCTOR");
     // the constructor is useless for 90% of the time
   }
 
   componentDidMount = async () => {
     // this will just happen once!!
-    console.log("THIS IS COMPONENTDIDMOUNT");
+   // console.log("THIS IS COMPONENTDIDMOUNT");
     // componentDidMount is the PERFECT PLACE for fetching outside data and update our state
     // fetch
     try {
       let response = await fetch(
-        "http://www.omdbapi.com/?apikey=58e96eba&s=harry%20potter"
+        "http://www.omdbapi.com/?apikey=e8bb1a3d&s=harry%20potter"
       );
-      console.log(response);
+      //console.log(response);
       if (response.ok) {
         let data = await response.json();
         let movies = data.Search;
@@ -36,7 +37,7 @@ class Home extends React.Component {
           movies,
           isLoading: false,
         });
-        console.log("new state,", movies);
+        //console.log("new state,", movies);
       } else {
         this.setState({
           isLoading: false,
@@ -53,7 +54,7 @@ class Home extends React.Component {
   };
 
   render() {
-    console.log("THIS IS THE RENDER", this.state);
+    //console.log("THIS IS THE RENDER", this.state);
 
     return (
       <>
@@ -83,15 +84,15 @@ class Home extends React.Component {
             className="row row-cols-sm-2 row-cols-md-4 row-cols-lg-6 mb-5"
           >
             {this.state.movies.map((movie) => (
-              <Col className="my-2">
-                <Card key={movie.Title} style={{border : 'none'}}>
+              <Col  key={movie.imdbID} className="my-2">
+                <Link to={'/showdetail/'}><Card style={{border : 'none'}}>
                   <Card.Img
-                  style={{height : '150px'}}
+                  style={{width : '100'}}
                     variant="top"
                     src={movie.Poster}
-                    alt={movie.Poster}
+                    alt={movie.Type}
                   />
-                </Card>
+                </Card></Link>
               </Col>
             ))}
           </Row>
@@ -101,4 +102,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);
