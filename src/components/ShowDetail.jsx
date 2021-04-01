@@ -11,7 +11,7 @@ class ShowDetail extends React.Component {
 
        try {
            //console.log(this.props);
-           let response = await fetch('http://www.omdbapi.com/?apikey=e8bb1a3d&i=' + {this.props.match.params.id});
+           let response = await fetch('http://www.omdbapi.com/?apikey=e8bb1a3d&i=');
            console.log(response);
            let data = response.json();
            console.log(data);
