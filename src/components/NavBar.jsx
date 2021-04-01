@@ -8,7 +8,7 @@ class NetflixNavBar extends React.Component {
 		return (
 			<>
 				<Navbar className="bg-dark text-white" expand="md">
-					<Link className="nav-link" to="/">
+					<Link exact="true" className="nav-link" to="/">
 						<img
 							src="https://logos-marcas.com/wp-content/uploads/2020/04/Netflix-Logo.png"
 							height="60px"
@@ -19,7 +19,7 @@ class NetflixNavBar extends React.Component {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="ml-auto">
-							<Link exact className="nav-link" to="/">
+							<Link exact="true" className="nav-link" to="/">
 								Home
 							</Link>
 							<Link className="nav-link" to="/register/">

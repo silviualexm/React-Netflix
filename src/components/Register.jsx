@@ -38,9 +38,6 @@ class Register extends React.Component {
 							<Form.Group controlId="exampleForm.ControlSelect1">
 								<Form.Label>Year of birth</Form.Label>
 								<Form.Control as="select">
-									{["1970" - "2021"].map((year) => (
-										<option>{year}</option>
-									))}
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>

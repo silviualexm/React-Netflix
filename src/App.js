@@ -12,20 +12,18 @@ import Register from './components/Register'
 
 function App() {
   return (
-    
-      <div>
-        <Router>
-          <NetflixNavBar />
-          <Link className="nav-link" to="/register/" >Register </Link>
-          <Register />
-          <Route path="/"><Home /></Route>
-          <Route path="/ShowDetail/:id"><ShowDetail /></Route>
-          
-          <Footer />
-        </Router>
-        
-      </div>
+
+    <div>
+      <Router>
+        <NetflixNavBar />
+        <Route path="/" exact component={Home} />
+        {/* <Route path="/detail/:id" render={(routerProps) => <ShowDetail {...routerProps} />} /> */}
+        <Route path="/register/" component={Register} />
+        <Footer />
+      </Router>
+
+    </div>
 
   )
-  }
+}
 export default App;
