@@ -1,5 +1,13 @@
 import React from "react";
-import { Container, Col, Row, Spinner, Alert, Card } from "react-bootstrap";
+import {
+	Container,
+	Col,
+	Form,
+	Row,
+	Spinner,
+	Alert,
+	Card,
+} from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 
 class Home extends React.Component {
@@ -7,17 +15,18 @@ class Home extends React.Component {
 		isLoading: true,
 		isError: false,
 		movies: [],
+		searchFilter: "",
 	};
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			movies: [],
-		};
-		// this is really the first method invoked upon component construction
-		//console.log("THIS IS THE CONSTRUCTOR");
-		// the constructor is useless for 90% of the time
-	}
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		movies: [],
+	// 	};
+	// this is really the first method invoked upon component construction
+	//console.log("THIS IS THE CONSTRUCTOR");
+	// the constructor is useless for 90% of the time
+	//}
 
 	componentDidMount = async () => {
 		// this will just happen once!!
@@ -34,10 +43,10 @@ class Home extends React.Component {
 				let movies = data.Search;
 				console.log(movies);
 				this.setState({
-					movies,
+					movies: movies,
 					isLoading: false,
 				});
-				//console.log("new state,", movies);
+				console.log("new state,", movies);
 			} else {
 				this.setState({
 					isLoading: false,
@@ -59,10 +68,19 @@ class Home extends React.Component {
 		return (
 			<>
 				{}
-				<Container className="container-fluid mt-5">
+				<Container className="container-fluid mt-5 text-white">
 					<h5 className="mb-2" style={{ color: "white" }}>
 						Trending Now
 					</h5>
+					<Form.Group controlId="formBasicEmail">
+						<Form.Label>Search for a movie: </Form.Label>
+						<Form.Control
+							type="text"
+							placeholder="search"
+							value={this.state.searchFilter}
+							onChange={(e) => this.setState({ searchFilter: e.target.value })}
+						/>
+					</Form.Group>
 					{this.state.isLoading && (
 						<Spinner animation="border" variant="success" />
 					)}
@@ -85,20 +103,24 @@ class Home extends React.Component {
 						style={{ padding: "0 15px" }}
 						className="row row-cols-sm-2 row-cols-md-4 row-cols-lg-6 mb-5"
 					>
-						{this.state.movies.map((movie) => (
-							<Col key={movie.imdbID} className="my-2">
-								<Link to={"/showdetail/"}>
-									<Card style={{ border: "none" }}>
-										<Card.Img
-											style={{ width: "100" }}
-											variant="top"
-											src={movie.Poster}
-											alt={movie.Type}
-										/>
-									</Card>
-								</Link>
-							</Col>
-						))}
+						{this.state.movies
+							.filter((a) =>
+								a.Title.toLowerCase().includes(this.state.searchFilter)
+							)
+							.map((movie) => (
+								<Col key={movie.imdbID} className="my-2">
+									<Link to={"/showdetail/"}>
+										<Card style={{ border: "none" }}>
+											<Card.Img
+												style={{ width: "100" }}
+												variant="top"
+												src={movie.Poster}
+												alt={movie.Type}
+											/>
+										</Card>
+									</Link>
+								</Col>
+							))}
 					</Row>
 				</Container>
 			</>

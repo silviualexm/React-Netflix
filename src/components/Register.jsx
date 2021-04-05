@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 class Register extends React.Component {
+	state = {};
 	submitForm = () => {
 		alert("You are registered now");
 	};

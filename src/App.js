@@ -17,8 +17,9 @@ function App() {
       <Router>
         <NetflixNavBar />
         <Route path="/" exact component={Home} />
-        {/* <Route path="/detail/:id" render={(routerProps) => <ShowDetail {...routerProps} />} /> */}
-        <Route path="/register/" component={Register} />
+        <Route path="/detail/:id" render={(routerProps) => <ShowDetail {...routerProps} />} />
+        <Route path="/register" component={Register} />
+
         <Footer />
       </Router>
 

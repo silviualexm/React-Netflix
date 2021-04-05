@@ -22,7 +22,7 @@ class NetflixNavBar extends React.Component {
 							<Link exact="true" className="nav-link" to="/">
 								Home
 							</Link>
-							<Link className="nav-link" to="/register/">
+							<Link className="nav-link" to="/register">
 								Register
 							</Link>
 						</Nav>
